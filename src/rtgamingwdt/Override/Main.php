@@ -13,7 +13,7 @@ class Main extends PluginBase {
     $this->unregister("ban");
     $this->unregister("ban-ip");
     $this->getServer()->getCommandMap()->register("ban", new commands\BanCommand($this));
-    $this->getServer()->getCommandMap()->register("ban-ip", new commands\BanIpCommands($this));
+    $this->getServer()->getCommandMap()->register("ban-ip", new commands\BanIpCommand($this));
     $this->getLogger()->info("§eOverride by RT has been §aenabled!");
   }
 
