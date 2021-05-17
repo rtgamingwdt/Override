@@ -18,7 +18,7 @@ class BanCommand extends PluginCommand {
     public function __construct() {
         parent::__construct("ban", Main::getMain());  
     
-        $this->setDescription("Allows the user to ban players.");
+        $this->setDescription("Prevents the specified player from joining this server");
         $this->setPermission("cmd.ban");
     }
     
