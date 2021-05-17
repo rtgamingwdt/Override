@@ -10,9 +10,11 @@ class Main extends PluginBase {
     
   public function onEnable() {    
     self::$main = $this;
-    $this->getLogger()->info("§eOverride by RT has been §aenabled!");
     $this->unregister("ban");
+    $this->unregister("ban-ip");
     $this->getServer()->getCommandMap()->register("ban", new commands\BanCommand($this));
+    $this->getServer()->getCommandMap()->register("ban-ip", new commands\BanIpCommands($this));
+    $this->getLogger()->info("§eOverride by RT has been §aenabled!");
   }
 
   public function onDisable() {
