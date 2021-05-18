@@ -59,10 +59,7 @@ class BanIpCommand extends PluginCommand {
       
       $reason = implode(" ", $args);
       
-      if(count($args) < 0) {
-        $sender->sendMessage(TextFormat::RED . "Please specify the IP you want to ban.");
-      } else {
-            
+      if(count($args) === 0) {
           $sender->getServer()->getIPBans()->addBan($ip, $reason, null, $sender->getName());
           $sender->sendMessage(TextFormat::GREEN . "The IP " . $ip . " has been banned for " . $reason);
             
@@ -72,6 +69,8 @@ class BanIpCommand extends PluginCommand {
                   $sender->getServer()->getNetwork()->blockAddress($ip, -1);
               }
           }
+      } else {
+          $sender->sendMessage(TextFormat::RED . "Please specify who you want to ban.");
       }
     }
   }
