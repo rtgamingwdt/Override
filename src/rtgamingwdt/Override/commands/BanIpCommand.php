@@ -59,22 +59,20 @@ class BanIpCommand extends PluginCommand {
       
       $reason = implode(" ", $args);
       
-      if(count($args) !== 0) {
+      if(count($args) < 0) {
         $sender->sendMessage(TextFormat::RED . "Please specify the IP you want to ban.");
-        return true;
-      }
+      } else {
             
-      $sender->getServer()->getIPBans()->addBan($ip, $reason, null, $sender->getName());
-      
-      $sender->sendMessage(TextFormat::GREEN . "The IP " . $ip . " has been banned for " . $reason);
+          $sender->getServer()->getIPBans()->addBan($ip, $reason, null, $sender->getName());
+          $sender->sendMessage(TextFormat::GREEN . "The IP " . $ip . " has been banned for " . $reason);
             
-      foreach($sender->getServer()->getOnlinePlayers() as $player) {
-        if($player->getAddress() === $ip){
-          $player->kick($reason !== "" ? "You have been banned for " . $reason : "No reason specified.");
-        }
+          foreach($sender->getServer()->getOnlinePlayers() as $player) {
+              if($player->getAddress() === $ip){
+                  $player->kick($reason !== "" ? "You have been banned for " . $reason : "No reason specified.");
+                  $sender->getServer()->getNetwork()->blockAddress($ip, -1);
+              }
+          }
       }
-      
-      $sender->getServer()->getNetwork()->blockAddress($ip, -1);
     }
   }
 }
