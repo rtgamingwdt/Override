@@ -12,6 +12,9 @@ use pocketmine\Player;
 use pocketmine\plugin\Plugin;
 use pocketmine\item\Item;
 use pocketmine\utils\TextFormat;
+use pocketmine\command\utils\InvalidCommandSyntaxException;
+use function count;
+use function implode;
 
 class BanCommand extends PluginCommand {
     
@@ -52,20 +55,17 @@ class BanCommand extends PluginCommand {
             $GUI->addInput(TextFormat::RED . "Reason");
             $GUI->sendToPlayer($sender);
         } else {
-            $name = array_shift($args);
-            
-            $reason = implode(" ", $args);
-                        
-            if(count($args) === 0) {
-                    $sender->sendMessage(TextFormat::RED . "Please specify a player you wish to ban.");
-                    return true;
+            if(count($args) === 0){
+                $sender->sendMessage("Do /ban <name> <reason>");
             }
 
+            $name = array_shift($args);
+            $reason = implode(" ", $args);
+
             $sender->getServer()->getNameBans()->addBan($name, $reason, null, $sender->getName());
-            $sender->sendMessage(TextFormat::GREEN . $name . " has been banned for " . $reason);
-            
-            if(($player = $sender->getServer()->getPlayerExact($name)) instanceof Player) {
-                $player->kick($reason !== "" ? "You have been banned for " . $reason : "No reason specified.");
+
+            if(($player = $sender->getServer()->getPlayerExact($name)) instanceof Player){
+                $player->kick($reason !== "" ? "You have been banned. Reason: " . $reason : "No reason specified.");
             }
         }
     }
