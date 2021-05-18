@@ -19,7 +19,7 @@ class BanIpCommand extends PluginCommand {
     parent::__construct("ban-ip", Main::getMain());  
     
     $this->setDescription("Prevents the specified IP address from joining the server.");
-    $this->setPermission("cmd.ban.ip");
+    $this->setPermission("cmd.banip");
   }
     
 
