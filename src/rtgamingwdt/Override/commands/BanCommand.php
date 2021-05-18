@@ -55,13 +55,13 @@ class BanCommand extends PluginCommand {
             $name = array_shift($args);
             
             $reason = implode(" ", $args);
-            
-            if(count($args) < 0) {
-                $sender->sendMessage(TextFormat::RED . "Please specify a player you want to ban.");
-                return true;
-            }
-            
+                        
             if(count($args) > 0 || count($args) === 0) {
+                if(count($args) < 0) {
+                    $sender->sendMessage(TextFormat::RED . "Please specify a player you want to ban.");
+                    return true;
+                }
+
                 $sender->getServer()->getNameBans()->addBan($name, $reason, null, $sender->getName());
                 $sender->sendMessage(TextFormat::GREEN . $name . " has been banned for " . $reason);
             
