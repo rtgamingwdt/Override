@@ -5,6 +5,7 @@ namespace rtgamingwdt\Override\commands;
 use rtgamingwdt\Override\Main;
 
 use pocketmine\command\CommandSender;
+use pocketmine\command\PluginCommand;
 use pocketmine\permission\BanEntry;
 use pocketmine\utils\TextFormat;
 use function array_map;
