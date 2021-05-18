@@ -63,6 +63,7 @@ class BanIpCommand extends PluginCommand {
         } else {
             if(count($args) === 0){
                 $sender->sendMessage("Who are you trying to ban?");
+                return true;
             }
           
             $value = array_shift($args);
