@@ -56,7 +56,7 @@ class BanCommand extends PluginCommand {
             
             $reason = implode(" ", $args);
             
-            if($args === null) {
+            if(count($args) !== 0) {
                 $sender->sendMessage("Please specify who you want to ban.");
                 return true;
             }
