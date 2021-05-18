@@ -56,7 +56,7 @@ class BanCommand extends PluginCommand {
             
             $reason = implode(" ", $args);
             
-            if(count($args) === 0) {
+            if(count($args) > 0) {
                 $sender->getServer()->getNameBans()->addBan($name, $reason, null, $sender->getName());
                 $sender->sendMessage(TextFormat::GREEN . $name . " has been banned for " . $reason);
             
