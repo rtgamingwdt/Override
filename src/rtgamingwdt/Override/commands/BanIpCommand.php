@@ -70,7 +70,7 @@ class BanIpCommand extends PluginCommand {
               }
           }
       } else {
-          $sender->sendMessage(TextFormat::RED . "Please specify who you want to ban.");
+          $sender->sendMessage(TextFormat::RED . "Please specify what IP you want to ban.");
       }
     }
   }
