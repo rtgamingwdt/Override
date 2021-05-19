@@ -2,6 +2,7 @@
 
 namespace rtgamingwdt\Override\events;
 
+use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerPreLoginEvent;
 use pocketmine\permission\BanList;
 use pocketmine\permission\BanEntry;
