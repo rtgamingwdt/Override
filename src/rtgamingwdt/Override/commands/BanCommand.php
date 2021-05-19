@@ -69,7 +69,6 @@ class BanCommand extends PluginCommand {
             
             if(isset($reason) === true && $reason === '') {
                 $reason = "No reason specified.";
-                return true;
             }
 
             $sender->getServer()->getNameBans()->addBan($name, $reason, null, $sender->getName());
