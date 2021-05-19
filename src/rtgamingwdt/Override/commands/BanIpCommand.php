@@ -38,7 +38,6 @@ class BanIpCommand extends PluginCommand {
                 
                 if($reason === null) {
                     $reason = "No reason specified";
-                    return true;
                 }
         
                 switch($result) {
@@ -74,9 +73,8 @@ class BanIpCommand extends PluginCommand {
             $value = array_shift($args);
             $reason = implode(" ", $args);
             
-            if($reason === null) {
-                $reason = "No reason specified";
-                return true;
+            if(isset($reason) === true && $reason === '') {
+                $reason = "No reason specified.";
             }
             
             if(preg_match("/^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])$/", $value)){
