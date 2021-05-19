@@ -76,7 +76,7 @@ class BanCommand extends PluginCommand {
             $sender->sendMessage($name . " has been banned for " . $reason);
 
             if(($player = $sender->getServer()->getPlayerExact($name)) instanceof Player){
-                $player->kick($reason !== "" ? "You have been banned. Reason: " . $reason);
+                $player->kick("You have been banned. Reason: " . $reason);
             }
         }
     }
