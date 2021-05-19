@@ -67,7 +67,7 @@ class BanCommand extends PluginCommand {
             $name = array_shift($args);
             $reason = implode(" ", $args);
             
-            if($reason === null) {
+            if(isset($reason) === true && $reason === '') {
                 $reason = "No reason specified.";
                 return true;
             }
