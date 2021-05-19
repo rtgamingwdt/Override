@@ -35,6 +35,11 @@ class BanIpCommand extends PluginCommand {
                     $sender->sendMessage(TextFormat::RED . "Who are you trying to ban?");
                     return true;
                 }
+                
+                if($reason === null) {
+                    $reason = "No reason specified";
+                    return true;
+                }
         
                 switch($result) {
                     case 0:
@@ -68,7 +73,12 @@ class BanIpCommand extends PluginCommand {
           
             $value = array_shift($args);
             $reason = implode(" ", $args);
-          
+            
+            if($reason === null) {
+                $reason = "No reason specified";
+                return true;
+            }
+            
             if(preg_match("/^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])$/", $value)){
                 $this->processIPBan($value, $sender, $reason);
                 $sender->sendMessage("The IP address " . $value . " has been banned for " . $reason);
@@ -89,7 +99,7 @@ class BanIpCommand extends PluginCommand {
         $sender->getServer()->getIPBans()->addBan($ip, $reason, null, $sender->getName());
         foreach($sender->getServer()->getOnlinePlayers() as $player) {
             if($player->getAddress() === $ip){
-                $player->kick($reason !== "" ? $reason : "Reason unspecified.");
+                $player->kick($reason);
             }
         }
         
