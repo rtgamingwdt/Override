@@ -47,7 +47,7 @@ class BanCommand extends PluginCommand {
                         $sender->sendMessage(TextFormat::GREEN . $player->getName() . " has been banned for " . $reason);
 
                         if(($player = $sender->getServer()->getPlayerExact($result)) instanceof Player) {
-                            $player->kick($reason !== "" ? "You have been banned for " . $reason : "No reason specified.");
+                            $player->kick(TextFormat::DARK_RED . "You have been banned for " . $reason);
                         }
                         break;
                 }					
@@ -69,10 +69,11 @@ class BanCommand extends PluginCommand {
             
             if($reason === null) {
                 $reason = "No reason specified.";
+                return true;
             }
 
             $sender->getServer()->getNameBans()->addBan($name, $reason, null, $sender->getName());
-            $sender->sendMessage($name . " has been banned for " . $reason : "No reason specified.");
+            $sender->sendMessage($name . " has been banned for " . $reason);
 
             if(($player = $sender->getServer()->getPlayerExact($name)) instanceof Player){
                 $player->kick($reason !== "" ? "You have been banned. Reason: " . $reason : "No reason specified.");
