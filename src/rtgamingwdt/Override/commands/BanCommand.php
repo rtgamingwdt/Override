@@ -36,6 +36,10 @@ class BanCommand extends PluginCommand {
                     $sender->sendMessage(TextFormat::RED . "Who are you trying to ban?");
                     return true;
                 }
+                
+                if($reason === null) {
+                    $reason = "No reason specified.";
+                }
         
                 switch($result) {
                     case 0:
@@ -62,6 +66,10 @@ class BanCommand extends PluginCommand {
 
             $name = array_shift($args);
             $reason = implode(" ", $args);
+            
+            if($reason === null) {
+                $reason = "No reason specified.";
+            }
 
             $sender->getServer()->getNameBans()->addBan($name, $reason, null, $sender->getName());
             $sender->sendMessage($name . " has been banned for " . $reason : "No reason specified.");
