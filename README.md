@@ -11,6 +11,8 @@ I have not been able to get on Minecraft yet to test some of these. However, I d
 
 **/banlist**
 
+**/defaultgamemode**
+
 **/say**
 
 >Created Commands
