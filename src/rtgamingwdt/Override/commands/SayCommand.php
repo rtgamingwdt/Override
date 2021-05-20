@@ -44,8 +44,7 @@ class SayCommand extends PluginCommand {
         });
       
         $GUI->setTitle(TextFormat::BOLD . TextFormat::RED . "BAN");
-        $GUI->setContent(TextFormat::AQUA . "Please type the message you wish to broadcast to the whole server.");
-        $GUI->addInput(TextFormat::BLUE . "Message Here");
+        $GUI->addInput(TextFormat::BLUE . "Please type the message you wish to broadcast to the whole server.");
         $GUI->sendToPlayer($sender);
       } else {
         
