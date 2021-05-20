@@ -38,7 +38,7 @@ class SayCommand extends PluginCommand {
         
           switch($result) {
             case 0:
-              $player->getServer()->broadcastMessage(implode(" ", $args));
+              $player->getServer()->broadcastMessage(implode(" ", $result));
             break;
           }					
         });
