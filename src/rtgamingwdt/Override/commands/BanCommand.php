@@ -43,11 +43,11 @@ class BanCommand extends PluginCommand {
         
                 switch($result) {
                     case 0:
-                        $sender->getServer()->getNameBans()->addBan($result, $reason, null, $sender->getName());
-                        $sender->sendMessage(TextFormat::GREEN . $player->getName() . " has been banned for " . $reason);
+                        $player->getServer()->getNameBans()->addBan($result, $reason, null, $player->getName());
+                        $player->sendMessage(TextFormat::GREEN . $result . " has been banned for " . $reason);
 
-                        if(($player = $sender->getServer()->getPlayerExact($result)) instanceof Player) {
-                            $player->kick(TextFormat::DARK_RED . "You have been banned for " . $reason);
+                        if(($result = $player->getServer()->getPlayerExact($result)) instanceof Player) {
+                            $result->kick(TextFormat::DARK_RED . "You have been banned for " . $reason);
                         }
                         break;
                 }					
