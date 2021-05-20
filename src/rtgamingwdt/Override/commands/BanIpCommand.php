@@ -27,18 +27,19 @@ class BanIpCommand extends PluginCommand {
     
     function execute(CommandSender $sender, string $commandLabel, array $args) {
         if($sender instanceof Player) {
-            $GUI = new CustomForm(function (Player $player, array $data) {
-                $result = $data[0];
-                $reason = $data[1];
+            if($sender->isOp()) {
+                $GUI = new CustomForm(function (Player $player, array $data) {
+                    $result = $data[0];
+                    $reason = $data[1];
         
-                if($data === null) {
-                    return true;
-                }
+                    if($data === null) {
+                        return true;
+                    }
                 
-                if($result === null) {						
-                    $sender->sendMessage(TextFormat::RED . "Who are you trying to ban?");
-                    return true;
-                }
+                    if($result === null) {						
+                        $player->sendMessage(TextFormat::RED . "Who are you trying to ban?");
+                        return true;
+                    }
                 
                 if($reason === null) {
                     $reason = "No reason specified";
@@ -51,7 +52,7 @@ class BanIpCommand extends PluginCommand {
                             $player->sendMessage("The IP address " . $value . " has been banned for " . $reason);
                         } else {
                             if(($target = $player->getServer()->getPlayer($result)) instanceof Player) {
-                                $this->processIPBan($player->getAddress(), $player, $reason);
+                                $this->processIPBan($target->getAddress(), $player, $reason);
                                 $player->sendMessage("The player " . $target->getName() . " has been banned for " . $reason);
                             } else {
                                 $player->sendMessage("The IP address you entered was invalid or the player that you entered is currently not online.");
@@ -68,6 +69,7 @@ class BanIpCommand extends PluginCommand {
             $GUI->addInput(TextFormat::BLUE . "Player IP");
             $GUI->addInput(TextFormat::RED . "Reason");
             $GUI->sendToPlayer($sender);
+            }
         } else {
             if(count($args) === 0){
                 $sender->sendMessage("Who are you trying to ban?");
