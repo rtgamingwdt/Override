@@ -11,7 +11,7 @@ Also, Permissions are not setup yet. I will setup permissions soon. So I wouldn'
 
 **/ban-ip** (Works in console. I have no idea if it works in game yet.)
 
-**/banlist
+**/banlist**
 
 **/say**
 
