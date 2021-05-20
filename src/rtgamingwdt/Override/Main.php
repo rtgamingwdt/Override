@@ -10,7 +10,7 @@ class Main extends PluginBase {
     
   public function onEnable() {    
     self::$main = $this;
-    $this->unregister("ban", "ban-ip", "banlist", "defaultgamemode", "say");
+    $this->unregister("ban", "ban-ip", "banlist", "defaultgamemode", "deop", "say");
     $this->getServer()->getPluginManager()->registerEvents(new events\PlayerLoginEvent(), $this);
     $this->getServer()->getCommandMap()->register("ban", new commands\BanCommand($this));
     $this->getServer()->getCommandMap()->register("ban-ip", new commands\BanIpCommand($this));
