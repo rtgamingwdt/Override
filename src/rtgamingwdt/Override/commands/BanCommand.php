@@ -54,7 +54,6 @@ class BanCommand extends PluginCommand {
             });
       
             $GUI->setTitle(TextFormat::BOLD . TextFormat::RED . "BAN");
-            $GUI->setContent(TextFormat::AQUA . "Please type the players name in that you wish to ban.");
             $GUI->addInput(TextFormat::BLUE . "Player Name");
             $GUI->addInput(TextFormat::RED . "Reason");
             $GUI->sendToPlayer($sender);
