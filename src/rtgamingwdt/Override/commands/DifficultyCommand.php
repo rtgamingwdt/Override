@@ -12,7 +12,9 @@ use pocketmine\command\CommandSender;
 use pocketmine\command\utils\InvalidCommandSyntaxException;
 use pocketmine\lang\TranslationContainer;
 use pocketmine\level\Level;
+use pocketmine\utils\TextFormat;
 use function count;
+use function implode;
 
 class DifficultyCommand extends PluginCommand {
   
