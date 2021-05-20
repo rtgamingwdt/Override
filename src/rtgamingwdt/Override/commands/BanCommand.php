@@ -31,7 +31,8 @@ class BanCommand extends PluginCommand {
             $GUI = new CustomForm(function (Player $player, array $data) {
                 $result = $data[0];
                 $reason = $data[1];
-        
+                
+                // Noticed a bug when clicking the X button. Imma have to check if $data is equal to null. But I will do that tomorrow since I gotta sleep.
                 if($result === null) {						
                     $sender->sendMessage(TextFormat::RED . "Who are you trying to ban?");
                     return true;
