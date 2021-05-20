@@ -31,6 +31,10 @@ class BanIpCommand extends PluginCommand {
                 $result = $data[0];
                 $reason = $data[1];
         
+                if($data === null) {
+                    return true;
+                }
+                
                 if($result === null) {						
                     $sender->sendMessage(TextFormat::RED . "Who are you trying to ban?");
                     return true;
@@ -43,14 +47,14 @@ class BanIpCommand extends PluginCommand {
                 switch($result) {
                     case 0:
                         if(preg_match("/^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])$/", $result)){
-                            $this->processIPBan($result, $sender, $reason);
-                            $sender->sendMessage("The IP address " . $value . " has been banned for " . $reason);
+                            $this->processIPBan($result, $player, $reason);
+                            $player->sendMessage("The IP address " . $value . " has been banned for " . $reason);
                         } else {
-                            if(($player = $sender->getServer()->getPlayer($result)) instanceof Player) {
-                                $this->processIPBan($player->getAddress(), $sender, $reason);
-                                $sender->sendMessage("The player " . $player->getName() . " has been banned for " . $reason);
+                            if(($target = $player->getServer()->getPlayer($result)) instanceof Player) {
+                                $this->processIPBan($player->getAddress(), $player, $reason);
+                                $player->sendMessage("The player " . $target->getName() . " has been banned for " . $reason);
                             } else {
-                                $sender->sendMessage("The IP address you entered was invalid or the player that you entered is currently not online.");
+                                $player->sendMessage("The IP address you entered was invalid or the player that you entered is currently not online.");
                                 return false;
                             }
                         }        
@@ -93,14 +97,14 @@ class BanIpCommand extends PluginCommand {
         }
     }
 
-    private function processIPBan(string $ip, CommandSender $sender, string $reason) : void {
-        $sender->getServer()->getIPBans()->addBan($ip, $reason, null, $sender->getName());
-        foreach($sender->getServer()->getOnlinePlayers() as $player) {
-            if($player->getAddress() === $ip){
-                $player->kick($reason);
+    private function processIPBan(string $ip, Player $player, string $reason) : void {
+        $player->getServer()->getIPBans()->addBan($ip, $reason, null, $player->getName());
+        foreach($player->getServer()->getOnlinePlayers() as $players) {
+            if($players->getAddress() === $ip){
+                $players->kick($reason);
             }
         }
         
-        $sender->getServer()->getNetwork()->blockAddress($ip, -1);
+        $player->getServer()->getNetwork()->blockAddress($ip, -1);
     }
 }
