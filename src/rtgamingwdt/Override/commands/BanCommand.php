@@ -28,39 +28,41 @@ class BanCommand extends PluginCommand {
 
     function execute(CommandSender $sender, string $commandLabel, array $args) {
         if($sender instanceof Player) {
-            $GUI = new CustomForm(function (Player $player, array $data) {
-                $result = $data[0];
-                $reason = $data[1];
+            if($sender->isOp()) {
+                $GUI = new CustomForm(function (Player $player, array $data) {
+                    $result = $data[0];
+                    $reason = $data[1];
+                    
+                    if($data === null) {
+                        return true; // I don't know if I have to return true or false here xD. I believe I just have to return true.
+                    }
                 
-                if($data === null) {
-                    return true; // I don't know if I have to return true or false here xD. I believe I just have to return true.
-                }
+                    if($result === null) {						
+                        $sender->sendMessage(TextFormat::RED . "Who are you trying to ban?");
+                        return true;
+                    }
                 
-                if($result === null) {						
-                    $sender->sendMessage(TextFormat::RED . "Who are you trying to ban?");
-                    return true;
-                }
-                
-                if($reason === null) {
-                    $reason = "No reason specified.";
-                }
+                    if($reason === null) {
+                        $reason = "No reason specified.";
+                    }
         
-                switch($result) {
-                    case 0:
-                        $player->getServer()->getNameBans()->addBan($result, $reason, null, $player->getName());
-                        $player->sendMessage(TextFormat::GREEN . $result . " has been banned for " . $reason);
+                    switch($result) {
+                        case 0:
+                            $player->getServer()->getNameBans()->addBan($result, $reason, null, $player->getName());
+                            $player->sendMessage(TextFormat::GREEN . $result . " has been banned for " . $reason);
 
-                        if(($result = $player->getServer()->getPlayerExact($result)) instanceof Player) {
-                            $result->kick(TextFormat::DARK_RED . "You have been banned for " . $reason);
-                        }
+                            if(($result = $player->getServer()->getPlayerExact($result)) instanceof Player) {
+                                $result->kick(TextFormat::DARK_RED . "You have been banned for " . $reason);
+                            }
                         break;
-                }					
-            });
+                    }					
+                });
       
-            $GUI->setTitle(TextFormat::BOLD . TextFormat::RED . "BAN");
-            $GUI->addInput(TextFormat::BLUE . "Player Name");
-            $GUI->addInput(TextFormat::RED . "Reason");
-            $GUI->sendToPlayer($sender);
+                $GUI->setTitle(TextFormat::BOLD . TextFormat::RED . "BAN");
+                $GUI->addInput(TextFormat::BLUE . "Player Name");
+                $GUI->addInput(TextFormat::RED . "Reason");
+                $GUI->sendToPlayer($sender);   
+            }
         } else {
             if(count($args) === 0){
                 $sender->sendMessage("Who are you trying to ban?");
