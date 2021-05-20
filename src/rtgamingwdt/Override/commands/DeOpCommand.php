@@ -67,7 +67,7 @@ class DeOpCommand extends PluginCommand {
                 $name->sendMessage(TextFormat::RED . "You no longer have staff permisssions.");
               }
               
-              $sender->sendMessage(TextFormat::GREEN . $result . "'s staff permissions have been taken.");
+              $sender->sendMessage(TextFormat::GREEN . $name . "'s staff permissions have been taken.");
     }
   }
 }
