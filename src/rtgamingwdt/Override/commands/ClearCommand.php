@@ -56,7 +56,7 @@ class ClearCommand extends PluginCommand {
       
       $name = array_shift($args);
       
-      if(($name = $player->getServer()->getPlayerExact($name)) instanceof Player) {
+      if(($name = $sender->getServer()->getPlayerExact($name)) instanceof Player) {
         $name->getInventory()->clearAll();
         return true;
       } else {
