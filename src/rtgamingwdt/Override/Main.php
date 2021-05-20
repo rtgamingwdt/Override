@@ -17,6 +17,7 @@ class Main extends PluginBase {
     $this->getServer()->getCommandMap()->register("banlist", new commands\BanListCommand($this));
     $this->getServer()->getCommandMap()->register("clear", new commands\ClearCommand($this));
     $this->getServer()->getCommandMap()->register("defaultgamemode", new commands\DefaultGamemodeCommand($this));
+    $this->getServer()->getCommandMap()->register("deop", new commands\DeOpCommand($this));
     $this->getServer()->getCommandMap()->register("say", new commands\SayCommand($this));
     $this->getLogger()->info("§eOverride by RT has been §aenabled!");
   }
