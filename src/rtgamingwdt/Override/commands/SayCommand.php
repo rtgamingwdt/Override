@@ -28,17 +28,17 @@ class SayCommand extends PluginCommand {
 
     function execute(CommandSender $sender, string $commandLabel, array $args) {
       if($sender instanceof Player) {
-        $GUI = new CustomForm(function (Player $player, array $data) {
+        $GUI = new SimpleForm(function (Player $player, array $data) {
           $result = $data[0];
           
           if($result === null) {						
-            $sender->sendMessage(TextFormat::RED . "You cannot broadcast a blank message.");
+            $player->sendMessage(TextFormat::RED . "You cannot broadcast a blank message.");
             return true;
           }
         
           switch($result) {
             case 0:
-              $sender->getServer()->broadcastMessage(implode(" ", $args));
+              $player->getServer()->broadcastMessage(implode(" ", $args));
             break;
           }					
         });
