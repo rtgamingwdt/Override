@@ -16,8 +16,7 @@ class PlayerLoginEvent implements Listener {
     $entry = new BanEntry($name);
     
     if($player->isBanned()) {
-      $player->close("", "§8Failed to connect to the server \n§cYou are banned from this server! \n§8Reason: §f" . $entry->getReason() . "§8If you have any questions. Please visit our Discord Server at https://discord.gg/A624QQjgJA
- \n §8Ban ID: §f" . $player->getUniqueId() . "\n §8Make sure not to share your ban ID with anyone other than a offical FortressFusion staff member. Doing so may slow down the process of you getting unbanned.");
+      $player->close("", "§8Failed to connect to the server \n§cYou are banned from this server! \n§8Reason: §f" . $entry->getReason() . " \n§8If you have any questions. Please visit our Discord Server at https://discord.gg/A624QQjgJA \n§8Ban ID: §f" . $player->getUniqueId() . "\n§8Make sure not to share your ban ID with anyone other than a offical FortressFusion staff member. Doing so may slow down the process of you getting unbanned.");
     }
   }
 }
