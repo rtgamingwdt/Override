@@ -3,7 +3,7 @@ I have decided that I want to override some of the default pocketmine commands s
 
 I have not been able to get on Minecraft yet to test some of these. However, I do know some that work in the console. And some will work in game and in console so those have no bugs. The following default commands have been recoded.
 
->Commands
+>Edited Commands
 
 **/ban**
 
@@ -12,6 +12,10 @@ I have not been able to get on Minecraft yet to test some of these. However, I d
 **/banlist**
 
 **/say**
+
+>Created Commands
+
+**/clear**
 
 >Events
 
