@@ -4,12 +4,17 @@ I have decided that I want to override some of the default pocketmine commands s
 I have not been able to get on Minecraft yet to test some of these. However, I do know some that work in the console. And some will work in game and in console so those have no bugs. The following default commands have been recoded.
 
 Also, Permissions are not setup yet. I will setup permissions soon. So I wouldn't recommend adding this to a public server yet.
+
 >Commands
 
-  >> /ban
+**/ban**
 
-  >> /ban-ip (Works in console. I have no idea if it works in game yet.)
+**/ban-ip** (Works in console. I have no idea if it works in game yet.)
 
-  >> /banlist
+**/banlist
 
-  >> /say
+**/say**
+
+>Events
+
+**PlayerLoginEvent** (You might need to edit the code. It will currently tell people to go to our Discord Server.)
