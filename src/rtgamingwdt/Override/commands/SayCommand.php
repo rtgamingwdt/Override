@@ -20,40 +20,41 @@ use function implode;
 class SayCommand extends PluginCommand {
     
   public function __construct() {
-    parent::__construct("say", Main::getMain());  
-    $this->setDescription("Broadcasts the given message.");
-    $this->setPermission("cmd.say");
-    }
+      parent::__construct("say", Main::getMain());  
+      $this->setDescription("Broadcasts the given message.");
+      $this->setPermission("cmd.say");
+  }
     
 
     function execute(CommandSender $sender, string $commandLabel, array $args) {
-      if($sender instanceof Player) {
-        $GUI = new CustomForm(function (Player $player, array $data) {
-          $result = $data[0];
+        if($sender instanceof Player) {
+            if($sender->isOp()) {
+                $GUI = new CustomForm(function (Player $player, array $data) {
+                    $result = $data[0];
           
-          if($result === null) {						
-            $player->sendMessage(TextFormat::RED . "You cannot broadcast a blank message.");
-            return true;
-          }
+                    if($result === null) {						
+                        $player->sendMessage(TextFormat::RED . "You cannot broadcast a blank message.");
+                        return true;
+                    }
         
-          switch($result) {
-            case 0:
-              $player->getServer()->broadcastMessage($result);
-            break;
-          }					
-        });
+                    switch($result) {
+                        case 0:
+                            $player->getServer()->broadcastMessage($result);
+                        break;
+                    }					
+                });
       
-        $GUI->setTitle(TextFormat::BOLD . TextFormat::RED . "BAN");
-        $GUI->addInput(TextFormat::BLUE . "Please type the message you wish to broadcast to the whole server.");
-        $GUI->sendToPlayer($sender);
-      } else {
+                $GUI->setTitle(TextFormat::BOLD . TextFormat::RED . "BAN");
+                $GUI->addInput(TextFormat::BLUE . "Please type the message you wish to broadcast to the whole server.");
+                $GUI->sendToPlayer($sender);
+            }
+        } else {
+            if(count($args) === 0){
+                $sender->sendMessage("You cannot broadcast a blank message.");
+                return true;
+            }
         
-        if(count($args) === 0){
-          $sender->sendMessage("You cannot broadcast a blank message.");
-          return true;
+            $sender->getServer()->broadcastMessage(implode(" ", $args));
         }
-        
-        $sender->getServer()->broadcastMessage(implode(" ", $args));
-      }
     }
 }
