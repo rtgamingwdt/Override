@@ -63,11 +63,13 @@ class DeOpCommand extends PluginCommand {
       $name = array_shift($args);
       
       $player = $sender->getServer()->getOfflinePlayer($name);
-      
       $player->setOp(false);
-      $player->sendMessage(TextFormat::RED . "You no longer have staff permisssions.");
+      
+      if($player instanceof Player) {
+        $player->sendMessage(TextFormat::RED . "You no longer have staff permisssions."); 
+      }
     }
-              
+    
     $sender->sendMessage(TextFormat::GREEN . $name . "'s staff permissions have been taken.");
   }
 }
