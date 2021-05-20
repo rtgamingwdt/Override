@@ -28,7 +28,7 @@ class SayCommand extends PluginCommand {
 
     function execute(CommandSender $sender, string $commandLabel, array $args) {
       if($sender instanceof Player) {
-        $GUI = new SimpleForm(function (Player $player, array $data) {
+        $GUI = new CustomForm(function (Player $player, array $data) {
           $result = $data[0];
           
           if($result === null) {						
