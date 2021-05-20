@@ -32,7 +32,10 @@ class BanCommand extends PluginCommand {
                 $result = $data[0];
                 $reason = $data[1];
                 
-                // Noticed a bug when clicking the X button. Imma have to check if $data is equal to null. But I will do that tomorrow since I gotta sleep.
+                if($data === null) {
+                    return true; // I don't know if I have to return true or false here xD. I believe I just have to return true.
+                }
+                
                 if($result === null) {						
                     $sender->sendMessage(TextFormat::RED . "Who are you trying to ban?");
                     return true;
