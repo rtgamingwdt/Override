@@ -56,18 +56,18 @@ class DeOpCommand extends PluginCommand {
       }
     } else {
       if(count($args) === 0) {
-        $sender->sendMessage("Who are you try to take away staff permissions from?");
+        $sender->sendMessage("Who are you trying to take away staff permissions from?");
         return true;
       }
       
       $name = array_shift($args);
       
-      if(($name = $sender->getServer()->getOfflinePlayer($name)) instanceof Player) {
-                $name->setOp(false);
-                $name->sendMessage(TextFormat::RED . "You no longer have staff permisssions.");
-              }
-              
-              $sender->sendMessage(TextFormat::GREEN . $name . "'s staff permissions have been taken.");
+      $player = $sender->getServer()->getOfflinePlayer($name);
+      
+      $player->setOp(false);
+      $player->sendMessage(TextFormat::RED . "You no longer have staff permisssions.");
     }
+              
+    $sender->sendMessage(TextFormat::GREEN . $name . "'s staff permissions have been taken.");
   }
 }
