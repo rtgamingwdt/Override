@@ -11,6 +11,8 @@ I have decided that I want to override some of the default pocketmine commands s
 
 **/defaultgamemode**
 
+**/difficulty**
+
 **/deop**
 
 **/say**
