@@ -21,4 +21,4 @@ I have decided that I want to override some of the default pocketmine commands s
 
 >Events
 
-**PlayerLoginEvent** (You might need to edit the code. It will currently tell people to go to our Discord Server.)
+**PlayerLoginEvent** (You might need to edit the code. It will currently tell people to go to my Discord Server.)
